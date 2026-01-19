@@ -50,17 +50,17 @@ if st.button("Run Models"):
     st.subheader("Observations on Model Performance")
 
     observations = {
-        "Logistic Regression":            "Served as a reliable baseline model with consistent performance, but its linear nature limited its ability to capture complex relationships in the data.",
+        "Logistic Regression":        "This was a reliable baseline model with consistent performance, but its linear nature limits its ability to capture more complex relationships present in the data.",
 
-        "Decision Tree":            "Was effective at learning feature interactions, though its performance variability suggested a tendency to overfit.",
+        "Decision Tree":        "Was able to model feature interactions effectively; however, its performance fluctuated, indicating a tendency to overfit the training data.",
 
-        "KNN":            "Delivered reasonable results but remained sensitive to feature scaling and neighborhood size, affecting prediction stability.",
+        "KNN":        "This model produced reasonable results but showed sensitivity to feature scaling and neighborhood size, which affected its stability across different samples.",
 
-        "Naive Bayes":            "Executed efficiently with acceptable performance; however, the independence assumption reduced accuracy on correlated features.",
+        "Naive Bayes":        "Executed very quickly and provided acceptable results, though its strong independence assumption reduced accuracy on correlated features.",
 
-        "Random Forest":            "Showed strong and stable performance by combining multiple trees, which helped improve generalization and reduce variance.",
+        "Random Forest":        "Demonstrated strong and consistent performance by aggregating multiple decision trees, which helped reduce variance and improve generalization.",
 
-        "XGBoost":            "Achieved the best overall performance due to boosting, regularization, and its ability to model complex patterns efficiently."
+        "XGBoost":        "Delivered the best overall results, benefiting from boosting, regularization, and its ability to learn complex patterns efficiently."
     }
 
     obs_df = pd.DataFrame(
