@@ -44,6 +44,9 @@ st.dataframe(results_df.set_index("Model").round(4))
 
 st.subheader("Observations on Model Performance")
 
+# ------------------------------------------------------------
+# Observations table
+# ------------------------------------------------------------
 observations = {
         "Logistic Regression": "Performs well as a baseline model but is limited in capturing complex non-linear relationships.",
         "Decision Tree": "Captures feature interactions effectively but may overfit the training data.",
@@ -59,3 +62,4 @@ obs_df = pd.DataFrame(
     )
 
 st.table(obs_df)
+
