@@ -1,15 +1,15 @@
-"""
-Main execution file.
+# ------------------------------------------------------------
+# Main Streamlit Application 
 
-Runs all classification models on the same dataset
-and prints a comparison table with evaluation metrics.
-"""
+# Runs multiple classification models on the same dataset  and displays evaluation metrics along with qualitative observations on model performance.
+# ------------------------------------------------------------
 
 import streamlit as st
 import pandas as pd
 
-from model.dataprep import load_and_prepare_data
-from model.metrics import run_all_models
+from model.datapreparation import load_and_prepare_data
+from model.modelsmetrics import run_all_models
+
 
 # ------------------------------------------------------------
 # Streamlit Page Configuration
@@ -36,31 +36,36 @@ if st.button("Run Models"):
         X_train, X_test, y_train, y_test = load_and_prepare_data()
         results_df = run_all_models(X_train, X_test, y_train, y_test)
 
-st.success("Model execution completed!")
+    st.success("Model execution completed!")
 
-st.subheader("Model Comparison Table")
-st.dataframe(results_df.set_index("Model").round(4))
+    # --------------------------------------------------------
+    # Results Table
+    # --------------------------------------------------------
+    st.subheader("Model Comparison Table")
+    st.dataframe(results_df.set_index("Model").round(4))
 
+    # --------------------------------------------------------
+    # Observations Section
+    # --------------------------------------------------------
+    st.subheader("Observations on Model Performance")
 
-st.subheader("Observations on Model Performance")
+    observations = {
+        "Logistic Regression":            "Served as a reliable baseline model with consistent performance, but its linear nature limited its ability to capture complex relationships in the data.",
 
-# ------------------------------------------------------------
-# Observations table
-# ------------------------------------------------------------
-observations = {
-        "Logistic Regression": "Performs well as a baseline model but is limited in capturing complex non-linear relationships.",
-        "Decision Tree": "Captures feature interactions effectively but may overfit the training data.",
-        "KNN": "Shows moderate performance and is sensitive to feature scaling and the choice of K.",
-        "Naive Bayes":  "Computationally efficient but constrained by the independence assumption among features.",
-        "Random Forest": "Provides strong and stable performance by reducing variance through ensemble learning.",
-        "XGBoost": "Achieves the best overall performance due to boosting, regularization, and efficient learning."
+        "Decision Tree":            "Was effective at learning feature interactions, though its performance variability suggested a tendency to overfit.",
+
+        "KNN":            "Delivered reasonable results but remained sensitive to feature scaling and neighborhood size, affecting prediction stability.",
+
+        "Naive Bayes":            "Executed efficiently with acceptable performance; however, the independence assumption reduced accuracy on correlated features.",
+
+        "Random Forest":            "Showed strong and stable performance by combining multiple trees, which helped improve generalization and reduce variance.",
+
+        "XGBoost":            "Achieved the best overall performance due to boosting, regularization, and its ability to model complex patterns efficiently."
     }
 
-obs_df = pd.DataFrame(
+    obs_df = pd.DataFrame(
         list(observations.items()),
         columns=["ML Model", "Observation"]
     )
 
-st.table(obs_df)
-
-
+    st.table(obs_df)
