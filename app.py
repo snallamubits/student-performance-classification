@@ -8,7 +8,7 @@ and prints a comparison table with evaluation metrics.
 import streamlit as st
 import pandas as pd
 
-from model.datapre import load_and_prepare_data
+from model.dataprep import load_and_prepare_data
 from model.metrics import run_all_models
 
 # ------------------------------------------------------------
@@ -62,4 +62,5 @@ obs_df = pd.DataFrame(
     )
 
 st.table(obs_df)
+
 
