@@ -7,8 +7,8 @@
 import streamlit as st
 import pandas as pd
 
-from model.datapreparation import load_and_prepare_data
-from model.modelsmetrics import run_all_models
+from model.dataprep import load_and_prepare_data
+from model.metrics import run_all_models
 
 
 # ------------------------------------------------------------
@@ -69,3 +69,4 @@ if st.button("Run Models"):
     )
 
     st.table(obs_df)
+
